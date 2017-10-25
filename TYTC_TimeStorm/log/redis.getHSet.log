@@ -1,0 +1,37 @@
+[2017-03-06 16:46:48]redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:50)
+	at redis.clients.jedis.JedisSentinelPool.getResource(JedisSentinelPool.java:209)
+	at Util_Redis.SentinelJedisUtil.getHSet(SentinelJedisUtil.java:511)
+	at storm.project.TYTC_TimeStorm.JDQstatusBolt.execute(JDQstatusBolt.java:58)
+	at org.apache.storm.daemon.executor$fn__8058$tuple_action_fn__8060.invoke(executor.clj:731)
+	at org.apache.storm.daemon.executor$mk_task_receiver$fn__7979.invoke(executor.clj:464)
+	at org.apache.storm.disruptor$clojure_handler$reify__7492.onEvent(disruptor.clj:40)
+	at org.apache.storm.utils.DisruptorQueue.consumeBatchToCursor(DisruptorQueue.java:451)
+	at org.apache.storm.utils.DisruptorQueue.consumeBatchWhenAvailable(DisruptorQueue.java:430)
+	at org.apache.storm.disruptor$consume_batch_when_available.invoke(disruptor.clj:73)
+	at org.apache.storm.daemon.executor$fn__8058$fn__8071$fn__8124.invoke(executor.clj:850)
+	at org.apache.storm.util$async_loop$fn__624.invoke(util.clj:484)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out
+	at redis.clients.jedis.Connection.connect(Connection.java:164)
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:80)
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1676)
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:87)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363)
+	at redis.clients.util.Pool.getResource(Pool.java:48)
+	... 13 more
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at redis.clients.jedis.Connection.connect(Connection.java:158)
+	... 20 more
+
